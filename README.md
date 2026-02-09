@@ -11,3 +11,4 @@ In progress.
 ## Notes
 - Learning how to use branches
 - Practicing commits and merges
+- This was added from an issue
