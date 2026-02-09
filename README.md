@@ -7,3 +7,7 @@ Learn GitHub by building and changing things safely.
 
 ## Status
 In progress.
+
+## Notes
+- Learning how to use branches
+- Practicing commits and merges
