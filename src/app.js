@@ -1,1 +1,1 @@
-console.log("Change from branch A");
+console.log("Change from branch B");
