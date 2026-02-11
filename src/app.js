@@ -1,1 +1,1 @@
-console.log("My project is alive");
+console.log("Version 2 of my project");
