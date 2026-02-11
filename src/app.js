@@ -1,1 +1,1 @@
-console.log("Version 2 of my project");
+console.log("Change from branch A");
