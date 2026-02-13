@@ -35,5 +35,5 @@ function buildMiniApp(name) {
     getMotivation()
   );
 }
-
-console.log(buildMiniApp("Zack"));
+const userName = prompt("What is your name?");
+console.log(buildMiniApp("userName"));
