@@ -5,23 +5,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mini Motivation App</h1>
-  <button onclick="runApp()">Run App</button>
+  <div class="container">
+    <h1>Mini Motivation App</h1>
+    <p>Click the button to run it.</p>
 
-  <pre id="output"></pre>
-
-  <script src="src/app.js"></script>
-  <script>
-    function runApp() {
-      const name = prompt("What is your name?");
-      const result = buildMiniApp(name);
-      document.getElementById("output").textContent = result;
-    }
-  </script>
+    <button onclick="runApp()">Run App</button>
+    <pre id="output"></pre>
+  </div>
 </body>
 </html>
 
-<head>
-  <title>Mini App</title>
-  <link rel="stylesheet" href="style.css">
-</head>
