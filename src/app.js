@@ -1,5 +1,5 @@
 function getGreeting(name) {
-  return "Hello " + name;
+  return "Hello " + name + "!";
 }
 
 function getTimeMessage() {
@@ -10,6 +10,12 @@ function getMotivation() {
   return "Keep building. You're getting better.";
 }
 
-console.log(getGreeting("Zack"));
-console.log(getTimeMessage());
-console.log(getMotivation());
+function buildMiniApp(name) {
+  return (
+    getGreeting(name) + "\n" +
+    getTimeMessage() + "\n" +
+    getMotivation()
+  );
+}
+
+console.log(buildMiniApp("Zack"));
