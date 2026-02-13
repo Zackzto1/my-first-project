@@ -18,7 +18,9 @@ function getTimeMessage() {
   const options = [
     "Keep building. You're getting better.",
     "Small steps every day = big results.",
-    "Don't stop. You're on a roll."
+    "Don’t stop. You’re on a roll.",
+    "You’re learning fast—stay with it.",
+    "One more try. Then another."
   ];
 
   const index = Math.floor(Math.random() * options.length);
