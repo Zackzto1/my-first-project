@@ -6,7 +6,16 @@ function getTimeMessage() {
   return "Hope you're having a great day!";
 }
 
-function getMotivation() {
+  function getMotivation() {
+  const options = [
+    "Keep building. You're getting better.",
+    "Small steps every day = big results.",
+    "Don't stop. You're on a roll."
+  ];
+
+  const index = Math.floor(Math.random() * options.length);
+  return options[index];
+}
   return "Keep building. You're getting better.";
 }
 
