@@ -1,1 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini App</title>
+</head>
+<body>
+  <h1>Mini Motivation App</h1>
+  <button onclick="runApp()">Run App</button>
 
+  <pre id="output"></pre>
+
+  <script src="src/app.js"></script>
+  <script>
+    function runApp() {
+      const name = prompt("What is your name?");
+      const result = buildMiniApp(name);
+      document.getElementById("output").textContent = result;
+    }
+  </script>
+</body>
+</html>
