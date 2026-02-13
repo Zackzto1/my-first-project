@@ -16,7 +16,6 @@ function getTimeMessage() {
   const index = Math.floor(Math.random() * options.length);
   return options[index];
 }
-  return "Keep building. You're getting better.";
 }
 
 function buildMiniApp(name) {
