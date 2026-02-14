@@ -36,10 +36,6 @@ function buildMiniApp(name) {
   );
 }
 function runApp() {
-function runApp() {
   const result = buildMiniApp("Zack");
-  document.getElementById("output").textContent = result;
-}
-  const result = buildMiniApp(userName);
   document.getElementById("output").textContent = result;
 }
