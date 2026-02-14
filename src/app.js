@@ -35,5 +35,8 @@ function buildMiniApp(name) {
     getMotivation()
   );
 }
-const userName = prompt("What is your name?");
-console.log(buildMiniApp("userName"));
+function runApp() {
+  const userName = "Zack"; // since you said you're fine using your name
+  const result = buildMiniApp(userName);
+  document.getElementById("output").textContent = result;
+}
