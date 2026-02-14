@@ -1,7 +1,4 @@
-function getGreeting(name) {
-  return "Hello " + name + "!";
-}
-
+alert("app.js loaded");
 function getTimeMessage() {
   const hour = new Date().getHours();
 
