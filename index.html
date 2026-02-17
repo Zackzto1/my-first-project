@@ -1,64 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Zack's App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Motivation App</title>
+
   <style>
     body {
-      background: #0f172a;
-      color: white;
-      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      background: #0f172a;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #e5e7eb;
     }
 
     .card {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 12px;
-      width: 300px;
+      width: min(560px, 92vw);
+      background: #1f2937;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    button {
-      background: #3b82f6;
-      border: none;
-      padding: 10px 20px;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 15px;
-      width: 100%;
     }
 
-    button:hover {
+    h1 {
+      margin: 0 0 18px;
+      font-size: 42px;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #0b1220;
+      color: #e5e7eb;
+      font-size: 16px;
+      margin: 12px 0 14px;
+    }
+
+    /* This removes the “weird focus box/mark” when you tap */
+    input:focus, button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: none;
       background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.99);
     }
 
     #output {
-      margin-top: 20px;
-      white-space: pre-line;
+      margin-top: 16px;
+      font-size: 20px;
+      line-height: 1.4;
+      min-height: 28px;
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="card">
-    <h2>Mini Motivation App</h2>
-    <input id="nameInput" type="text" placeholder="Enter your name">
+    <h1>Mini Motivation App</h1>
+
+    <input id="nameInput" type="text" placeholder="Enter your name" />
+
     <button onclick="runApp()">Run App</button>
-    
+
     <div id="output"></div>
   </div>
-}
-  script>
-  function runApp() {
-     const name = document.getElementById("nameInput").value;
-     const output = document.getElementById("output");
-     output.textContent = "Keep going, " + name + ".";
-  
-</script>
 
+  <script>
+    function runApp() {
+      const name = document.getElementById("nameInput").value.trim();
+
+      const messages = [
+        "Keep going.",
+        "Small steps every day.",
+        "You’re getting better.",
+        "Don’t stop now.",
+        "One more try. Then another."
+      ];
+
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+
+      const output = document.getElementById("output");
+      output.textContent = name ? `${msg} ${name}.` : msg;
+    }
+  </script>
 </body>
 </html>
