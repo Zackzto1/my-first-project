@@ -52,19 +52,13 @@
     <div id="output"></div>
   </div>
 
-  <script>
-    function runApp() {
-      const messages = [
-        "You're building something real.",
-        "Small steps every day.",
-        "You didn't quit. That matters.",
-        "Keep going."
-      ];
-
-      const random = Math.floor(Math.random() * messages.length);
-      document.getElementById("output").textContent = messages[random];
-    }
-  </script>
+  script>
+  function runApp() {
+     const name = document.getElementById("nameInput").value;
+     const output = document.getElementById("output");
+     output.textContent = "Keep going, " + name + ".";
+  }
+</script>
 
 </body>
 </html>
