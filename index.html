@@ -95,8 +95,17 @@ function runApp() {
     output.textContent = "Enter your name first.";
     return;
   }
+const messages = [
+  "You're building something real.",
+  "Small steps every day.",
+  "Stay disciplined.",
+  "You're not quitting this time.",
+  "Momentum is everything."
+];
 
-  output.textContent = "Keep going, " + name + ".";
+const randomIndex = Math.floor(Math.random() * messages.length);
+output.textContent = messages[randomIndex] + " " + name + ".";
+  
 }
 
 function clearApp() {
