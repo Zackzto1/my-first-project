@@ -86,23 +86,30 @@
     <div id="output"></div>
   </div>
 
-  <script>
-    function runApp() {
-      const name = document.getElementById("nameInput").value.trim();
+    <script>
+function runApp() {
+  const name = document.getElementById("nameInput").value;
+  const output = document.getElementById("output");
 
-      const messages = [
-        "Keep going.",
-        "Small steps every day.",
-        "You’re getting better.",
-        "Don’t stop now.",
-        "One more try. Then another."
-      ];
+  if (name.trim() === "") {
+    output.textContent = "Enter your name first.";
+    return;
+  }
 
-      const msg = messages[Math.floor(Math.random() * messages.length)];
+  output.textContent = "Keep going, " + name + ".";
+}
 
-      const output = document.getElementById("output");
-      output.textContent = name ? `${msg} ${name}.` : msg;
-    }
-  </script>
+function clearApp() {
+  document.getElementById("nameInput").value = "";
+  document.getElementById("output").textContent = "";
+  document.getElementById("nameInput").focus();
+}
+
+document.getElementById("nameInput").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    runApp();
+  }
+});
+</script>
 </body>
 </html>
