@@ -77,8 +77,9 @@ footer {
   <div class="card">
     <h1>Mini Motivation</h1>
     <p id="output">Loading...</p>
-    <button onclick="newQuote()">New Quote</button>
-    <button onclick="dailyQuote()">Daily Quote</button>
+    <button onclick="shareQuote()">Share Quote</button>
+    <button onclick="saveFavorite()">Save Favorite</button>
+    <button onclick="toggleTheme()">Toggle Theme</button>
     <footer>
   Built by Zack
 </footer>
@@ -120,7 +121,7 @@ function randomBackground() {
   document.body.style.background = randomColor;
 }
 
-function newQuote() {
+function newQuote(clickSound.play(); {
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
   localStorage.setItem("lastQuote", quote);
   animateQuote(quote);
@@ -144,12 +145,26 @@ function dailyQuote() {
   randomBackground();
 }
 
+function shareQuote() {
+  const text = output.textContent;
+
+  if (navigator.share) {
+    navigator.share({
+      title: "Mini Motivation",
+      text: text,
+      url: window.location.href
+    });
+  } else {
+    alert("Sharing not supported on this device.");
+  }
+}
+
 window.onload = () => {
   const saved = localStorage.getItem("lastQuote");
   if (saved) {
     animateQuote(saved);
   } else {
-    newQuote(clickSound.play(););
+    newQuote(););
   }
 };
 </script>
