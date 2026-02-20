@@ -94,6 +94,7 @@ const quotes = [
   "Calm mind. Clear direction.",
   "Act, don’t overthink.",
   "Your future self is watching."
+  const clickSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
 ];
 
 const colors = [
@@ -148,7 +149,7 @@ window.onload = () => {
   if (saved) {
     animateQuote(saved);
   } else {
-    newQuote();
+    newQuote(clickSound.play(););
   }
 };
 </script>
