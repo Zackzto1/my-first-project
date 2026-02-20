@@ -72,6 +72,35 @@
       min-height: 28px;
     }
   </style>
+  <body>
+  <div class="card">
+    <h1>Mini Motivation</h1>
+    <p id="output">Click the button for motivation</p>
+    <button onclick="getMotivation()">Inspire Me</button>
+  </div>
+
+  <script>
+    const quotes = [
+      "You’re stronger than you think.",
+      "Progress, not perfection.",
+      "Discipline beats motivation.",
+      "Small steps still move you forward.",
+      "You are becoming who you’re meant to be."
+    ];
+
+    function getMotivation() {
+      const output = document.getElementById("output");
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      
+      output.classList.remove("show");
+
+      setTimeout(() => {
+        output.textContent = quotes[randomIndex];
+        output.classList.add("show");
+      }, 50);
+    }
+  </script>
+</body>
 </head>
 
 <body>
