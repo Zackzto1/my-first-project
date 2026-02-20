@@ -1,69 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Motivation App</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini Motivation App</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0f172a;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: #e5e7eb;
-    }
+<style>
+#output {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
 
-    .card {
-      width: min(560px, 92vw);
-      background: #1f2937;
-      padding: 28px;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-      text-align: center;
-    }
+#output.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    h1 {
-      margin: 0 0 18px;
-      font-size: 42px;
-      letter-spacing: 0.5px;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #e5e7eb;
+  transition: background 500ms ease;
+  background: #0f172a;
+}
 
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px 16px;
-      border-radius: 10px;
-      border: 1px solid #334155;
-      background: #0b1220;
-      color: #e5e7eb;
-      font-size: 16px;
-      margin: 12px 0 14px;
-    }
+.card {
+  width: min(560px, 92vw);
+  background: #1f2937;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  text-align: center;
+}
 
-    /* This removes the “weird focus box/mark” when you tap */
-    input:focus, button:focus {
-      outline: none;
-      box-shadow: none;
-    }
+h1 {
+  margin-bottom: 18px;
+}
 
-    button {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 10px;
-      border: none;
-      background: #2563eb;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:active {
-      transform: scale(0.99);
-    }
 button {
   padding: 12px 20px;
   font-size: 16px;
@@ -72,95 +50,91 @@ button {
   background: #6366f1;
   color: white;
   cursor: pointer;
-  transition: background 200ms ease;
+  margin-top: 16px;
 }
 
 button:hover {
   background: #4f46e5;
 }
-    #output {
-      margin-top: 16px;
-      font-size: 20px;
-      line-height: 1.4;
-      min-height: 28px;
-    }
-  </style>
-  <body>
-  <div class="card">
-    <h1>Mini Motivation</h1>
-    <p id="output">Click the button for motivation</p>
-    <button onclick="getMotivation()">Inspire Me</button>
-  </div>
-
-  <script>
-    const quotes = [
-      "You’re stronger than you think.",
-      "Progress, not perfection.",
-      "Discipline beats motivation.",
-      "Small steps still move you forward.",
-      "You are becoming who you’re meant to be."
-    ];
-
-    function getMotivation() {
-      const output = document.getElementById("output");
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      
-      output.classList.remove("show");
-
-      setTimeout(() => {
-        output.textContent = quotes[randomIndex];
-        output.classList.add("show");
-      }, 50);
-    }
-  </script>
-</body>
+</style>
 </head>
 
 <body>
   <div class="card">
-    <h1>Mini Motivation App</h1>
-
-    <input id="nameInput" type="text" placeholder="Enter your name" />
-
-    <button onclick="runApp()">Run App</button>
-    <button onclick="clearApp()" class="secondary">Clear</button>
-
-    <div id="output"></div>
+    <h1>Mini Motivation</h1>
+    <p id="output">Loading...</p>
+    <button onclick="newQuote()">New Quote</button>
+    <button onclick="dailyQuote()">Daily Quote</button>
   </div>
 
-    <script>
-function runApp() {
-  const name = document.getElementById("nameInput").value;
-  const output = document.getElementById("output");
+<script>
+const quotes = [
+  "You’re stronger than you think.",
+  "Progress, not perfection.",
+  "Discipline beats motivation.",
+  "Small steps still move you forward.",
+  "You are becoming who you’re meant to be.",
+  "Calm mind. Clear direction.",
+  "Act, don’t overthink.",
+  "Your future self is watching."
+];
 
-  if (name.trim() === "") {
-    output.textContent = "Enter your name first.";
-    return;
-  }
-const messages = [
-  "You're building something real.",
-  "Small steps every day.",
-  "Stay disciplined.",
-  "You're not quitting this time.",
-  "Momentum is everything."
-]; 
+const colors = [
+  "#0f172a",
+  "#1e293b",
+  "#111827",
+  "#1f2937",
+  "#0b1120"
+];
 
-const randomIndex = Math.floor(Math.random() * messages.length);
-output.textContent = messages[randomIndex] + " " + name + ".";
-  
+const output = document.getElementById("output");
+
+function animateQuote(text) {
+  output.classList.remove("show");
+  setTimeout(() => {
+    output.textContent = text;
+    output.classList.add("show");
+  }, 50);
 }
 
-function clearApp() {
-  document.getElementById("nameInput").value = "";
-  document.getElementById("output").textContent = "";
-  document.getElementById("nameInput").focus();
+function randomBackground() {
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  document.body.style.background = randomColor;
 }
 
-document.getElementById("nameInput").addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    runApp();
+function newQuote() {
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  localStorage.setItem("lastQuote", quote);
+  animateQuote(quote);
+  randomBackground();
+}
+
+function dailyQuote() {
+  const today = new Date().toDateString();
+  const storedDate = localStorage.getItem("quoteDate");
+  const storedQuote = localStorage.getItem("dailyQuote");
+
+  if (storedDate === today && storedQuote) {
+    animateQuote(storedQuote);
+  } else {
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    localStorage.setItem("dailyQuote", quote);
+    localStorage.setItem("quoteDate", today);
+    animateQuote(quote);
   }
-});
+
+  randomBackground();
+}
+
+window.onload = () => {
+  const saved = localStorage.getItem("lastQuote");
+  if (saved) {
+    animateQuote(saved);
+  } else {
+    newQuote();
+  }
+};
 </script>
+
 </body>
 </html>
