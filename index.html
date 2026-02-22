@@ -119,6 +119,48 @@ footer {
   </div>
 
 <script>
+  function openFavorites() {
+  const modal = document.getElementById("favoritesModal");
+  const list = document.getElementById("favoritesList");
+  list.innerHTML = "";
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  if (favorites.length === 0) {
+    list.innerHTML = "<li>No favorites saved yet.</li>";
+  } else {
+    favorites.forEach((quote, index) => {
+      const li = document.createElement("li");
+      li.textContent = quote;
+
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "Remove";
+      removeBtn.onclick = () => removeFavorite(index);
+
+      li.appendChild(document.createElement("br"));
+      li.appendChild(removeBtn);
+      list.appendChild(li);
+    });
+  }
+
+  modal.style.display = "flex";
+}
+
+function closeFavorites() {
+  document.getElementById("favoritesModal").style.display = "none";
+}
+
+function removeFavorite(index) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  favorites.splice(index, 1);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  openFavorites();
+}
+
+function clearFavorites() {
+  localStorage.removeItem("favorites");
+  openFavorites();
+}
 const quotes = [
   "You’re stronger than you think.",
   "Progress, not perfection.",
