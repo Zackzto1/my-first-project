@@ -97,8 +97,9 @@ const quotes = [
   "Calm mind. Clear direction.",
   "Act, don’t overthink.",
   "Your future self is watching."
-  const clickSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
 ];
+
+const clickSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
 
 const colors = [
   "#0f172a",
@@ -123,8 +124,9 @@ function randomBackground() {
   document.body.style.background = randomColor;
 }
 
-function newQuote(clickSound.play(); {
+function newQuote() {
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  clickSound.play();
   localStorage.setItem("lastQuote", quote);
   animateQuote(quote);
   randomBackground();
@@ -135,15 +137,18 @@ function dailyQuote() {
   const storedDate = localStorage.getItem("quoteDate");
   const storedQuote = localStorage.getItem("dailyQuote");
 
+  let quote;
+
   if (storedDate === today && storedQuote) {
-    animateQuote(storedQuote);
+    quote = storedQuote;
   } else {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    quote = quotes[Math.floor(Math.random() * quotes.length)];
     localStorage.setItem("dailyQuote", quote);
     localStorage.setItem("quoteDate", today);
-    animateQuote(quote);
   }
 
+  clickSound.play();
+  animateQuote(quote);
   randomBackground();
 }
 
@@ -161,13 +166,20 @@ function shareQuote() {
   }
 }
 
-window.onload = () => {
-  const saved = localStorage.getItem("lastQuote");
-  if (saved) {
-    animateQuote(saved);
-  } else {
-    newQuote(););
-  }
+function saveFavorite() {
+  const text = output.textContent;
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  favorites.push(text);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  alert("Saved to favorites ⭐");
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+window.onload = function() {
+  newQuote();
 };
 </script>
 
